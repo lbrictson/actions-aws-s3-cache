@@ -1,0 +1,27 @@
+# action.yml
+name: 'Download/Upload Cache to S3'
+description: 'Downloads or uploads a directory to s3'
+inputs:
+  upload_or_download:  # id of input
+    description: 'Accepts upload or download'
+    required: true
+    default: 'download'
+  bucket:
+    description: 'Bucket to expect cache file in or upload to'
+    required: true
+  path:
+    description: 's3 path to upload/download from within bucket, use "/" for root'
+    required: true
+  local_path:
+    description: 'Local path for files to be uploaded from or downloaded to, ./ is current directory'
+    required: true
+    default: './'
+  backup_path:
+    description: 'A secondary path for downloading only that wil be used if the normal path is found to be empty'
+    required: true
+outputs:
+  result: # id of output
+    description: 'Result of upload or download'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
