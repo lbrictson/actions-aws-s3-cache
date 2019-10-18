@@ -23,13 +23,13 @@ if [ "$INPUT_UPLOAD_OR_DOWNLOAD" == 'download' ]; then
             echo "Downloading backup cache to $INPUT_LOCAL_PATH"
             AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET aws s3 sync s3://$INPUT_BUCKET$INPUT_PATH $INPUT_LOCAL_PATH
             echo "Cache downloaded"
-            chmod -r 777 ./_build
+            chmod -R 777 $INPUT_LOCAL_PATH
             exit 0;
         fi
         echo "Downloading cache to $INPUT_LOCAL_PATH"
         AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET aws s3 sync s3://$INPUT_BUCKET$INPUT_PATH $INPUT_LOCAL_PATH
         echo "Cache downloaded"
-        chmod -r 777 ./_build
+        chmod -R 777 $INPUT_LOCAL_PATH
         exit 0;
 fi
 
