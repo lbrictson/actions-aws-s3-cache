@@ -21,13 +21,13 @@ if [ "$INPUT_UPLOAD_OR_DOWNLOAD" == 'download' ]; then
                 exit 0;
             fi
             echo "Downloading backup cache to $INPUT_LOCAL_PATH"
-            AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET aws s3 sync s3://$INPUT_BUCKET$INPUT_PATH $INPUT_LOCAL_PATH
+            AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET s3cmd --recursive --preserve sync s3://$INPUT_BUCKET$INPUT_PATH $INPUT_LOCAL_PATH
             echo "Cache downloaded"
             chmod -R 777 $INPUT_LOCAL_PATH
             exit 0;
         fi
         echo "Downloading cache to $INPUT_LOCAL_PATH"
-        AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET aws s3 sync s3://$INPUT_BUCKET$INPUT_PATH $INPUT_LOCAL_PATH
+        AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET s3cmd --recursive --preserve sync s3://$INPUT_BUCKET$INPUT_PATH $INPUT_LOCAL_PATH
         echo "Cache downloaded"
         chmod -R 777 $INPUT_LOCAL_PATH
         exit 0;
@@ -35,7 +35,7 @@ fi
 
 if [ "$INPUT_UPLOAD_OR_DOWNLOAD" == 'upload' ]; then
         echo "Uploading Cache files at $INPUT_LOCAL_PATH to s3 bucket $INPUT_BUCKET with path $INPUT_PATH"
-        AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET aws s3 sync $INPUT_LOCAL_PATH s3://$INPUT_BUCKET$INPUT_PATH
+        AWS_REGION=$INPUT_AWS_REGION AWS_ACCESS_KEY_ID=$INPUT_AWS_KEY AWS_SECRET_ACCESS_KEY=$INPUT_AWS_SECRET s3cmd --recursive --preserve sync $INPUT_LOCAL_PATH s3://$INPUT_BUCKET$INPUT_PATH
         exit 0;
 fi
 
