@@ -19,6 +19,15 @@ inputs:
   backup_path:
     description: 'A secondary path for downloading only that wil be used if the normal path is found to be empty'
     required: true
+  aws_region:
+    description: 'AWS region to operate in'
+    required: true
+  aws_key:
+    description: 'AWS access key id'
+    required: true
+  aws_secret:
+    description: 'AWS secret key'
+    required: true
 outputs:
   result: # id of output
     description: 'Result of upload or download'
